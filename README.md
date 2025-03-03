@@ -27,7 +27,7 @@ import (
 Then use in the normal manner. See the [godoc]for more.
 
 ```go
-g, ctx := errgroup.WithCancel()
+g := errgroup.WithCancel()
 // g.SetLimit(10)
 g.Go(func() error {
     // do something
