@@ -36,3 +36,5 @@ g.Go(func() error {
 
 err := g.Wait()
 ```
+## Performance
+...to be updated
