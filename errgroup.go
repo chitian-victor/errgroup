@@ -7,7 +7,6 @@ package errgroup
 
 import (
 	"context"
-	"errors"
 	"log"
 	"runtime"
 	"sync"
