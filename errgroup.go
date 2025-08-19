@@ -12,7 +12,15 @@ import (
 	"runtime"
 	"sync"
 )
+type Error string
 
+func (e Error) Error() string {
+	return string(e)
+}
+
+const (
+	PanicError = Error("errgroup: goroutine panic")
+)
 // A Group is a collection of goroutines working on subtasks that are part of
 // the same overall task.
 //
@@ -96,7 +104,7 @@ func (g *Group) Go(f func() error) {
 					buf := make([]byte, size)
 					buf = buf[:runtime.Stack(buf, false)]
 					log.Printf("panic: err=%s\n%s", err, string(buf))
-					localDone <- errors.New("panic")
+					localDone <- PanicError
 				}
 				close(localDone)
 			}()
